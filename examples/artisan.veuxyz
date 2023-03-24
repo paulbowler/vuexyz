@@ -1,0 +1,4 @@
+Domain Product id:integer name:string
+Domain Item id:integer name:string
+Domain Recipe id:integer name:string
+View Recipies
