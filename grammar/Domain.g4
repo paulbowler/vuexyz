@@ -1,41 +1,23 @@
 grammar Domain;
 
-app         : (object)* ;
+database            : (db_table)+ ;
 
-object      : ( domain | view ) ;
+db_table            : TABLE WORD db_attribute* ;
 
-domain      : DOMAIN WORD attribute+ ;
+db_attribute        : WORD ':' (STRING|INTEGER) ;
 
-view        : VIEW WORD ;
+TABLE               : [tT][aA][bB][lL][eE] ;
+VIEW                : [vV][iI][eE][wW] ;
 
-attribute   : WORD ':' (STRING|INTEGER) ;
+STRING              : [sS][tT][rR][iI][nN][gG] ;
+INTEGER             : [iI][nN][tT][eE][gG][eE][rR] ;
 
-fragment D          : ('D'|'d') ;
-fragment O          : ('O'|'o') ;
-fragment M          : ('M'|'m') ;
-fragment A          : ('A'|'a') ;
-fragment I          : ('I'|'i') ;
-fragment N          : ('N'|'n') ;
-fragment S          : ('S'|'s') ;
-fragment T          : ('T'|'t') ;
-fragment R          : ('R'|'r') ;
-fragment G          : ('G'|'g') ;
-fragment E          : ('E'|'e') ;
-fragment V          : ('V'|'v') ;
-fragment W          : ('W'|'w') ;
-
-DOMAIN              : D O M A I N ;
-VIEW                : V I E W ;
-
-STRING              : S T R I N G ;
-INTEGER             : I N T E G E R ;
+WORD                : (LOWERCASE | UPPERCASE | '_')+ ;
 
 fragment LOWERCASE  : [a-z] ;
 fragment UPPERCASE  : [A-Z] ;
 
-SEPERATOR           : ':' ;
-
-WORD                : (LOWERCASE | UPPERCASE | '_')+ ;
+SEPARATOR           : ':' ;
 
 NEWLINE             : ('\r'? '\n' | '\r')+ -> skip;
 WS                  : [ \t]+ -> skip;

@@ -7,53 +7,33 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface DomainListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link DomainParser#app}.
+	 * Enter a parse tree produced by {@link DomainParser#database}.
 	 * @param ctx the parse tree
 	 */
-	void enterApp(DomainParser.AppContext ctx);
+	void enterDatabase(DomainParser.DatabaseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DomainParser#app}.
+	 * Exit a parse tree produced by {@link DomainParser#database}.
 	 * @param ctx the parse tree
 	 */
-	void exitApp(DomainParser.AppContext ctx);
+	void exitDatabase(DomainParser.DatabaseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DomainParser#object}.
+	 * Enter a parse tree produced by {@link DomainParser#db_table}.
 	 * @param ctx the parse tree
 	 */
-	void enterObject(DomainParser.ObjectContext ctx);
+	void enterDb_table(DomainParser.Db_tableContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DomainParser#object}.
+	 * Exit a parse tree produced by {@link DomainParser#db_table}.
 	 * @param ctx the parse tree
 	 */
-	void exitObject(DomainParser.ObjectContext ctx);
+	void exitDb_table(DomainParser.Db_tableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DomainParser#domain}.
+	 * Enter a parse tree produced by {@link DomainParser#db_attribute}.
 	 * @param ctx the parse tree
 	 */
-	void enterDomain(DomainParser.DomainContext ctx);
+	void enterDb_attribute(DomainParser.Db_attributeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DomainParser#domain}.
+	 * Exit a parse tree produced by {@link DomainParser#db_attribute}.
 	 * @param ctx the parse tree
 	 */
-	void exitDomain(DomainParser.DomainContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DomainParser#view}.
-	 * @param ctx the parse tree
-	 */
-	void enterView(DomainParser.ViewContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DomainParser#view}.
-	 * @param ctx the parse tree
-	 */
-	void exitView(DomainParser.ViewContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DomainParser#attribute}.
-	 * @param ctx the parse tree
-	 */
-	void enterAttribute(DomainParser.AttributeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DomainParser#attribute}.
-	 * @param ctx the parse tree
-	 */
-	void exitAttribute(DomainParser.AttributeContext ctx);
+	void exitDb_attribute(DomainParser.Db_attributeContext ctx);
 }

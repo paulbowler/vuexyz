@@ -16,26 +16,26 @@ public class DomainParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		DOMAIN=1, VIEW=2, STRING=3, INTEGER=4, SEPERATOR=5, WORD=6, NEWLINE=7, 
+		TABLE=1, VIEW=2, STRING=3, INTEGER=4, WORD=5, SEPARATOR=6, NEWLINE=7, 
 		WS=8;
 	public static final int
-		RULE_app = 0, RULE_object = 1, RULE_domain = 2, RULE_view = 3, RULE_attribute = 4;
+		RULE_database = 0, RULE_db_table = 1, RULE_db_attribute = 2;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"app", "object", "domain", "view", "attribute"
+			"database", "db_table", "db_attribute"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, null, "':'"
+			null, null, null, null, null, null, "':'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "DOMAIN", "VIEW", "STRING", "INTEGER", "SEPERATOR", "WORD", "NEWLINE", 
+			null, "TABLE", "VIEW", "STRING", "INTEGER", "WORD", "SEPARATOR", "NEWLINE", 
 			"WS"
 		};
 	}
@@ -91,169 +91,48 @@ public class DomainParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class AppContext extends ParserRuleContext {
-		public List<ObjectContext> object() {
-			return getRuleContexts(ObjectContext.class);
+	public static class DatabaseContext extends ParserRuleContext {
+		public List<Db_tableContext> db_table() {
+			return getRuleContexts(Db_tableContext.class);
 		}
-		public ObjectContext object(int i) {
-			return getRuleContext(ObjectContext.class,i);
+		public Db_tableContext db_table(int i) {
+			return getRuleContext(Db_tableContext.class,i);
 		}
-		public AppContext(ParserRuleContext parent, int invokingState) {
+		public DatabaseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_app; }
+		@Override public int getRuleIndex() { return RULE_database; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterApp(this);
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterDatabase(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitApp(this);
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitDatabase(this);
 		}
 	}
 
-	public final AppContext app() throws RecognitionException {
-		AppContext _localctx = new AppContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_app);
+	public final DatabaseContext database() throws RecognitionException {
+		DatabaseContext _localctx = new DatabaseContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_database);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(13);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==DOMAIN || _la==VIEW) {
-				{
-				{
-				setState(10);
-				object();
-				}
-				}
-				setState(15);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class ObjectContext extends ParserRuleContext {
-		public DomainContext domain() {
-			return getRuleContext(DomainContext.class,0);
-		}
-		public ViewContext view() {
-			return getRuleContext(ViewContext.class,0);
-		}
-		public ObjectContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_object; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterObject(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitObject(this);
-		}
-	}
-
-	public final ObjectContext object() throws RecognitionException {
-		ObjectContext _localctx = new ObjectContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_object);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(18);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case DOMAIN:
-				{
-				setState(16);
-				domain();
-				}
-				break;
-			case VIEW:
-				{
-				setState(17);
-				view();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class DomainContext extends ParserRuleContext {
-		public TerminalNode DOMAIN() { return getToken(DomainParser.DOMAIN, 0); }
-		public TerminalNode WORD() { return getToken(DomainParser.WORD, 0); }
-		public List<AttributeContext> attribute() {
-			return getRuleContexts(AttributeContext.class);
-		}
-		public AttributeContext attribute(int i) {
-			return getRuleContext(AttributeContext.class,i);
-		}
-		public DomainContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_domain; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterDomain(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitDomain(this);
-		}
-	}
-
-	public final DomainContext domain() throws RecognitionException {
-		DomainContext _localctx = new DomainContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_domain);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(20);
-			match(DOMAIN);
-			setState(21);
-			match(WORD);
-			setState(23); 
+			setState(7); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(22);
-				attribute();
+				setState(6);
+				db_table();
 				}
 				}
-				setState(25); 
+				setState(9); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==WORD );
+			} while ( _la==TABLE );
 			}
 		}
 		catch (RecognitionException re) {
@@ -268,78 +147,99 @@ public class DomainParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class ViewContext extends ParserRuleContext {
-		public TerminalNode VIEW() { return getToken(DomainParser.VIEW, 0); }
+	public static class Db_tableContext extends ParserRuleContext {
+		public TerminalNode TABLE() { return getToken(DomainParser.TABLE, 0); }
 		public TerminalNode WORD() { return getToken(DomainParser.WORD, 0); }
-		public ViewContext(ParserRuleContext parent, int invokingState) {
+		public List<Db_attributeContext> db_attribute() {
+			return getRuleContexts(Db_attributeContext.class);
+		}
+		public Db_attributeContext db_attribute(int i) {
+			return getRuleContext(Db_attributeContext.class,i);
+		}
+		public Db_tableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_view; }
+		@Override public int getRuleIndex() { return RULE_db_table; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterView(this);
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterDb_table(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitView(this);
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitDb_table(this);
 		}
 	}
 
-	public final ViewContext view() throws RecognitionException {
-		ViewContext _localctx = new ViewContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_view);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(27);
-			match(VIEW);
-			setState(28);
-			match(WORD);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class AttributeContext extends ParserRuleContext {
-		public TerminalNode WORD() { return getToken(DomainParser.WORD, 0); }
-		public TerminalNode SEPERATOR() { return getToken(DomainParser.SEPERATOR, 0); }
-		public TerminalNode STRING() { return getToken(DomainParser.STRING, 0); }
-		public TerminalNode INTEGER() { return getToken(DomainParser.INTEGER, 0); }
-		public AttributeContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_attribute; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterAttribute(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitAttribute(this);
-		}
-	}
-
-	public final AttributeContext attribute() throws RecognitionException {
-		AttributeContext _localctx = new AttributeContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_attribute);
+	public final Db_tableContext db_table() throws RecognitionException {
+		Db_tableContext _localctx = new Db_tableContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_db_table);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(11);
+			match(TABLE);
+			setState(12);
 			match(WORD);
-			setState(31);
-			match(SEPERATOR);
-			setState(32);
+			setState(16);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==WORD) {
+				{
+				{
+				setState(13);
+				db_attribute();
+				}
+				}
+				setState(18);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class Db_attributeContext extends ParserRuleContext {
+		public TerminalNode WORD() { return getToken(DomainParser.WORD, 0); }
+		public TerminalNode SEPARATOR() { return getToken(DomainParser.SEPARATOR, 0); }
+		public TerminalNode STRING() { return getToken(DomainParser.STRING, 0); }
+		public TerminalNode INTEGER() { return getToken(DomainParser.INTEGER, 0); }
+		public Db_attributeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_db_attribute; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).enterDb_attribute(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DomainListener ) ((DomainListener)listener).exitDb_attribute(this);
+		}
+	}
+
+	public final Db_attributeContext db_attribute() throws RecognitionException {
+		Db_attributeContext _localctx = new Db_attributeContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_db_attribute);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(19);
+			match(WORD);
+			setState(20);
+			match(SEPARATOR);
+			setState(21);
 			_la = _input.LA(1);
 			if ( !(_la==STRING || _la==INTEGER) ) {
 			_errHandler.recoverInline(this);
@@ -363,29 +263,22 @@ public class DomainParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\b#\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
-		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0001"+
-		"\u0000\u0005\u0000\f\b\u0000\n\u0000\f\u0000\u000f\t\u0000\u0001\u0001"+
-		"\u0001\u0001\u0003\u0001\u0013\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0004\u0002\u0018\b\u0002\u000b\u0002\f\u0002\u0019\u0001\u0003\u0001"+
-		"\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001"+
-		"\u0004\u0000\u0000\u0005\u0000\u0002\u0004\u0006\b\u0000\u0001\u0001\u0000"+
-		"\u0003\u0004 \u0000\r\u0001\u0000\u0000\u0000\u0002\u0012\u0001\u0000"+
-		"\u0000\u0000\u0004\u0014\u0001\u0000\u0000\u0000\u0006\u001b\u0001\u0000"+
-		"\u0000\u0000\b\u001e\u0001\u0000\u0000\u0000\n\f\u0003\u0002\u0001\u0000"+
-		"\u000b\n\u0001\u0000\u0000\u0000\f\u000f\u0001\u0000\u0000\u0000\r\u000b"+
-		"\u0001\u0000\u0000\u0000\r\u000e\u0001\u0000\u0000\u0000\u000e\u0001\u0001"+
-		"\u0000\u0000\u0000\u000f\r\u0001\u0000\u0000\u0000\u0010\u0013\u0003\u0004"+
-		"\u0002\u0000\u0011\u0013\u0003\u0006\u0003\u0000\u0012\u0010\u0001\u0000"+
-		"\u0000\u0000\u0012\u0011\u0001\u0000\u0000\u0000\u0013\u0003\u0001\u0000"+
-		"\u0000\u0000\u0014\u0015\u0005\u0001\u0000\u0000\u0015\u0017\u0005\u0006"+
-		"\u0000\u0000\u0016\u0018\u0003\b\u0004\u0000\u0017\u0016\u0001\u0000\u0000"+
-		"\u0000\u0018\u0019\u0001\u0000\u0000\u0000\u0019\u0017\u0001\u0000\u0000"+
-		"\u0000\u0019\u001a\u0001\u0000\u0000\u0000\u001a\u0005\u0001\u0000\u0000"+
-		"\u0000\u001b\u001c\u0005\u0002\u0000\u0000\u001c\u001d\u0005\u0006\u0000"+
-		"\u0000\u001d\u0007\u0001\u0000\u0000\u0000\u001e\u001f\u0005\u0006\u0000"+
-		"\u0000\u001f \u0005\u0005\u0000\u0000 !\u0007\u0000\u0000\u0000!\t\u0001"+
-		"\u0000\u0000\u0000\u0003\r\u0012\u0019";
+		"\u0004\u0001\b\u0018\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0001\u0000\u0004\u0000\b\b\u0000\u000b\u0000\f\u0000"+
+		"\t\u0001\u0001\u0001\u0001\u0001\u0001\u0005\u0001\u000f\b\u0001\n\u0001"+
+		"\f\u0001\u0012\t\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0000\u0000\u0003\u0000\u0002\u0004\u0000\u0001\u0001\u0000"+
+		"\u0003\u0004\u0016\u0000\u0007\u0001\u0000\u0000\u0000\u0002\u000b\u0001"+
+		"\u0000\u0000\u0000\u0004\u0013\u0001\u0000\u0000\u0000\u0006\b\u0003\u0002"+
+		"\u0001\u0000\u0007\u0006\u0001\u0000\u0000\u0000\b\t\u0001\u0000\u0000"+
+		"\u0000\t\u0007\u0001\u0000\u0000\u0000\t\n\u0001\u0000\u0000\u0000\n\u0001"+
+		"\u0001\u0000\u0000\u0000\u000b\f\u0005\u0001\u0000\u0000\f\u0010\u0005"+
+		"\u0005\u0000\u0000\r\u000f\u0003\u0004\u0002\u0000\u000e\r\u0001\u0000"+
+		"\u0000\u0000\u000f\u0012\u0001\u0000\u0000\u0000\u0010\u000e\u0001\u0000"+
+		"\u0000\u0000\u0010\u0011\u0001\u0000\u0000\u0000\u0011\u0003\u0001\u0000"+
+		"\u0000\u0000\u0012\u0010\u0001\u0000\u0000\u0000\u0013\u0014\u0005\u0005"+
+		"\u0000\u0000\u0014\u0015\u0005\u0006\u0000\u0000\u0015\u0016\u0007\u0000"+
+		"\u0000\u0000\u0016\u0005\u0001\u0000\u0000\u0000\u0002\t\u0010";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

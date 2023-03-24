@@ -1,4 +1,11 @@
-Domain Product id:integer name:string
-Domain Item id:integer name:string
-Domain Recipe id:integer name:string
-View Recipies
+table Product
+    id:integer
+    name:string
+
+table Item
+    id:integer
+    name:string
+
+table Recipe
+    id:integer
+    name:string

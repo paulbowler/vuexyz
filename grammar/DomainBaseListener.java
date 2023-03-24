@@ -16,61 +16,37 @@ public class DomainBaseListener implements DomainListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterApp(DomainParser.AppContext ctx) { }
+	@Override public void enterDatabase(DomainParser.DatabaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitApp(DomainParser.AppContext ctx) { }
+	@Override public void exitDatabase(DomainParser.DatabaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterObject(DomainParser.ObjectContext ctx) { }
+	@Override public void enterDb_table(DomainParser.Db_tableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitObject(DomainParser.ObjectContext ctx) { }
+	@Override public void exitDb_table(DomainParser.Db_tableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDomain(DomainParser.DomainContext ctx) { }
+	@Override public void enterDb_attribute(DomainParser.Db_attributeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDomain(DomainParser.DomainContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterView(DomainParser.ViewContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitView(DomainParser.ViewContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAttribute(DomainParser.AttributeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAttribute(DomainParser.AttributeContext ctx) { }
+	@Override public void exitDb_attribute(DomainParser.Db_attributeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
