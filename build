@@ -1,0 +1,4 @@
+antlr4 ./grammar/Domain.g4
+javac ./grammar/*.java
+grun Domain database -tree ./examples/artisan.veuxyz
+
