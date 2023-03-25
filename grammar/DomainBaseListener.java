@@ -47,6 +47,30 @@ public class DomainBaseListener implements DomainListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDb_attribute(DomainParser.Db_attributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLocal_attribute(DomainParser.Local_attributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLocal_attribute(DomainParser.Local_attributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForeign_attribute(DomainParser.Foreign_attributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForeign_attribute(DomainParser.Foreign_attributeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -8,4 +8,4 @@ table Item
 
 table Recipe
     id:integer
-    name:string
+    Product.name

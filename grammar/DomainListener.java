@@ -36,4 +36,24 @@ public interface DomainListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDb_attribute(DomainParser.Db_attributeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DomainParser#local_attribute}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocal_attribute(DomainParser.Local_attributeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DomainParser#local_attribute}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocal_attribute(DomainParser.Local_attributeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DomainParser#foreign_attribute}.
+	 * @param ctx the parse tree
+	 */
+	void enterForeign_attribute(DomainParser.Foreign_attributeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DomainParser#foreign_attribute}.
+	 * @param ctx the parse tree
+	 */
+	void exitForeign_attribute(DomainParser.Foreign_attributeContext ctx);
 }

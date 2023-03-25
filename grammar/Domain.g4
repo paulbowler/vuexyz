@@ -4,7 +4,11 @@ database            : (db_table)+ ;
 
 db_table            : TABLE WORD db_attribute* ;
 
-db_attribute        : WORD ':' (STRING|INTEGER) ;
+db_attribute        : (local_attribute | foreign_attribute) ;
+
+local_attribute     : WORD ':' (STRING|INTEGER) ;
+
+foreign_attribute   : WORD '.' WORD ;
 
 TABLE               : [tT][aA][bB][lL][eE] ;
 VIEW                : [vV][iI][eE][wW] ;
